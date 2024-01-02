@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "ff84f85e-834c-4c9d-a1ea-760f78b68c91",
+		"name": "NewJSONResonse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11628402",
+		"_collection_link": "https://www.postman.com/gold-robot-534123/workspace/postman-training/collection/11628402-ff84f85e-834c-4c9d-a1ea-760f78b68c91?action=share&source=collection_link&creator=11628402"
+	},
+	"item": [
+		{
+			"name": "NEW_API_REQUEST",
+			"item": [
+				{
+					"name": "GET_SINGLE_USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"pm.test(\"Status code has been extracted\", function() {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"})\r",
+									"pm.test(\"I am testing json response\", function() {\r",
+									"    pm.response.to.be.ok;\r",
+									"})\r",
+									"let body = pm.response.json();\r",
+									"\r",
+									"pm.test(\"I am verifying the first name\", function() {\r",
+									"    pm.expect(body.data.first_name).to.equal(\"Janet\");\r",
+									"})\r",
+									"pm.test(\"I am verifying the last name\", function() {\r",
+									"    pm.expect(body.data.last_name).to.equal(\"Weaver\");\r",
+									"})\r",
+									"pm.test(\"I am verifying email\", function() {\r",
+									"    pm.expect(body.data.email).to.equal(\"janet.weaver@reqres.in\");\r",
+									"})\r",
+									"console.log(\"here I logged my test results\");\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users/2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL_USERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Arrow Function\", ()=> {\r",
+									"    pm.expect(pm.response.code).to.eql(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name shown as OK\", function() {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Checking any of those status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202])\r",
+									"})\r",
+									"\r",
+									"console.log(\"here I logged my test results\");\r",
+									"\r",
+									"let Jsondata = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test('Checking header values', function() {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql\r",
+									"    ('application/json; charset=utf-8')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 6000ms\", function() {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"})\r",
+									"console.log(typeof Jsondata.data);\r",
+									"pm.test.skip(\"Skip\", function() {\r",
+									"    pm.response.to.have.status(201)\r",
+									"});\r",
+									"\r",
+									"///parse json data\r",
+									"var abc = pm.response.json();\r",
+									"\r",
+									"///parse text data\r",
+									"var xyz = pm.response.text();\r",
+									"\r",
+									"console.log(abc)\r",
+									"\r",
+									"console.log(xyz)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users?page=1",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New_User_Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Arrow Function\", ()=> {\r",
+									"    pm.expect(pm.response.code).to.be.eql(201)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 9,\r\n    \"email\": \"faris.howlader@yahoo.com\",\r\n    \"first_name\": \"Faris\",\r\n    \"last_name\": \"Howlader\",\r\n    \"job\": \"QAManualAndAutomation\",\r\n    \"skills\": [\"api\", \"Selenium\", \"ALM\",\r\n    \"UFT\", \"TestNG\", \"BDD\"\r\n    ],\r\n    \"exp\": \"true\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder shows the overall information of the customers and creating a new customer for running the automated tests."
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 9,\r\n    \"email\": \"faris.howlader@yahoo.com\",\r\n    \"first_name\": \"Faris\",\r\n    \"last_name\": \"Howlader\",\r\n    \"job\": \"QAManualAndAutomation\",\r\n    \"skills\": [\"api\", \"Selenium\", \"ALM\",\r\n    \"UFT\", \"TestNG\", \"BDD\"\r\n    ],\r\n    \"exp\": \"true\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
